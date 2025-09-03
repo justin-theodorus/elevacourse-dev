@@ -8,7 +8,7 @@ export async function updateSession(request) {
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
       cookies: {
         getAll() {
@@ -43,11 +43,19 @@ export async function updateSession(request) {
     !user &&
     !request.nextUrl.pathname.startsWith('/login') &&
     !request.nextUrl.pathname.startsWith('/auth') &&
-    !request.nextUrl.pathname.startsWith('/error')
+    !request.nextUrl.pathname.startsWith('/error') &&
+    request.nextUrl.pathname !== '/'
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone();
     url.pathname = '/login';
+    return NextResponse.redirect(url);
+  }
+
+  // If user is authenticated and trying to access login page, redirect to profile
+  if (user && request.nextUrl.pathname === '/login') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/profile';
     return NextResponse.redirect(url);
   }
 
