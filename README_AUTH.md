@@ -1,6 +1,6 @@
 # 🚀 Frontend Developer Guide
 
-*Note: Profile page, login page, error page nya cuma buat testing purposes. Yang penting liat flow nya aja.*
+_Note: Profile page, login page, error page nya cuma buat testing purposes. Yang penting liat flow nya aja._
 
 ## 🏗️ Architecture
 
