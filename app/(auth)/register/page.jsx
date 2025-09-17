@@ -16,13 +16,12 @@ export default function RegisterPage() {
 			<AuthHeader title="Sign Up" prompt="Already have an account?" href="/login" linkText="Log in" />
 			<AuthSocialButtons />
 			<AuthSeparator />
-			<AuthForm >
+			<AuthForm mode="signup">
 				<EmailField />
 				<PasswordField />
 				<AuthFooterLink />
 				<AuthSubmitButton>Sign Up</AuthSubmitButton>
 			</AuthForm>
-			{/* <AuthForm /> */}
 		</AuthShell>
 	);
 }

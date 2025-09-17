@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useMemo } from 'react';
 import { registerSchema, loginSchema } from '@/lib/validation/authSchemas';
 
-export default function AuthForm({ children, mode = 'signup' }) {
+export default function AuthForm({ children, mode }) {
 	const router = useRouter();
 	const schema = useMemo(() => (mode === 'signup' ? registerSchema : loginSchema), [mode]);
 	const endpoint = mode === 'signup' ? '/auth/email/signup' : '/auth/email/signin';
