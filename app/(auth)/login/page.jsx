@@ -16,7 +16,7 @@ export default function LoginPage() {
 			<AuthHeader title="Log In" prompt="Don't have an account?" href="/register" linkText="Sign up" />
 			<AuthSocialButtons />
 			<AuthSeparator />
-			<AuthForm>
+			<AuthForm mode="signin">
 				<EmailField />
 				<PasswordField />
 				<AuthFooterLink />
