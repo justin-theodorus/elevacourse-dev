@@ -1,14 +1,18 @@
 'use client';
 
 import { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { FaEyeSlash } from 'react-icons/fa';
-import { FaRegEye } from 'react-icons/fa6';
+import { FaRegEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function PasswordField() {
 	const [show, setShow] = useState(false);
+	const {
+		register,
+		formState: { errors },
+	} = useFormContext();
 
 	return (
 		<div className="space-y-2">
@@ -30,7 +34,8 @@ export default function PasswordField() {
 				</Button>
 			</div>
 
-			<Input id="password" name="password" type={show ? 'text' : 'password'} autoComplete="current-password" placeholder="********" className="h-11" required />
+			<Input id="password" type={show ? 'text' : 'password'} autoComplete="new-password" placeholder="********" className="h-11" aria-invalid={!!errors.password} {...register('password')} />
+			{errors.password && <p className="text-xs md:text-sm text-red-600">{errors.password.message}</p>}
 		</div>
 	);
 }

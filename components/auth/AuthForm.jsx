@@ -1,87 +1,68 @@
 'use client';
 
-import { useState } from 'react';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { FormProvider, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
+import { useMemo } from 'react';
+import { registerSchema, loginSchema } from '@/lib/validation/authSchemas';
 
 export default function AuthForm({ children, mode = 'signup' }) {
 	const router = useRouter();
-	const [isLoading, setIsLoading] = useState(false);
-	const [errorMsg, setErrorMsg] = useState('');
-	const [infoMsg, setInfoMsg] = useState('');
+	const schema = useMemo(() => (mode === 'signup' ? registerSchema : loginSchema), [mode]);
+	const endpoint = mode === 'signup' ? '/auth/email/signup' : '/auth/email/signin';
 
-	async function handleEmailAuth(e) {
-		e.preventDefault();
-		setErrorMsg('');
-		setInfoMsg('');
-		setIsLoading(true);
+	const methods = useForm({
+		resolver: zodResolver(schema),
+		defaultValues: { email: '', password: '' },
+		mode: 'onSubmit',
+	});
 
+	const onSubmit = async (values) => {
 		try {
-			const form = e.currentTarget;
-			const fd = new FormData(form);
-			const email = String(fd.get('email') || '').trim();
-			const password = String(fd.get('password') || '');
-
-			if (!email || !password) {
-				setErrorMsg('Email dan password wajib diisi.');
-				setIsLoading(false);
-				return;
-			}
-
-			const endpoint = mode === 'signin' ? '/auth/email/signin' : '/auth/email/signup';
-
-			const res = await fetch(endpoint, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					email,
-					password,
+			const { data } = await axios.post(
+				endpoint,
+				{
+					...values,
 					redirectTo: typeof window !== 'undefined' ? `${window.location.origin}/auth/callback?next=/profile` : undefined,
-				}),
-			});
-
-			const data = await res.json().catch(() => ({}));
-
-			if (!res.ok) {
-				setErrorMsg(data?.error || data?.message || 'Something went wrong');
-				return;
-			}
+				},
+				{
+					withCredentials: true,
+					timeout: 10000,
+					headers: { 'Content-Type': 'application/json' },
+				}
+			);
 
 			if (mode === 'signup') {
 				if (data?.needsEmailConfirmation) {
-					setInfoMsg('Check your email to confirm your account.');
-					form.reset?.();
+					toast.success('Registration successful 🎉', {
+						description: 'Check your email to confirm your account.',
+					});
+					methods.reset();
 					router.push('/login');
 					return;
 				}
 			}
 
-			const to = data?.redirectTo || '/profile';
+			methods.reset();
+			const redirectTo = data?.redirectTo || '/profile';
 			if (typeof window !== 'undefined') {
-				window.location.href = to;
+				window.location.href = redirectTo;
 			} else {
-				router.push(to);
+				router.push(redirectTo);
 			}
 		} catch (err) {
-			setErrorMsg('Network error. Please try again.');
-		} finally {
-			setIsLoading(false);
+			const msg = mode === 'signup' ? 'Sign up failed' : 'Incorrect email or password';
+			toast.error(msg);
 		}
-	}
+	};
 
 	return (
-		<form className="space-y-4 md:space-y-5" onSubmit={handleEmailAuth} noValidate>
-			<fieldset disabled={isLoading} className="space-y-4 md:space-y-5">
+		<FormProvider {...methods}>
+			<form noValidate className="space-y-4 md:space-y-5" onSubmit={methods.handleSubmit(onSubmit)}>
 				{children}
-			</fieldset>
-
-			{errorMsg ? (
-				<p className="text-sm text-red-600" role="alert">
-					{errorMsg}
-				</p>
-			) : null}
-			{infoMsg ? <p className="text-sm text-green-600">{infoMsg}</p> : null}
-
-			{isLoading ? <p className="text-xs text-muted-foreground">Please wait…</p> : null}
-		</form>
+			</form>
+		</FormProvider>
 	);
 }
