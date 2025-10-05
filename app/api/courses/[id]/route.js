@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabaseServer';
 
 export async function GET(_req, { params }) {
   const supabase = await createClient();
-  const id = params?.id;
+  const { id } = await params;
 
   if (!id) {
     return NextResponse.json({ error: 'Missing course id' }, { status: 400 });

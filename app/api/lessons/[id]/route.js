@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabaseServer';
 
 export async function GET(_req, { params }) {
   const supabase = await createClient();
-  const id = params?.id;
+  const { id } = await params;
 
   if (!id) {
     return NextResponse.json({ error: 'Missing lesson id' }, { status: 400 });
@@ -23,5 +23,5 @@ export async function GET(_req, { params }) {
   if (lessonErr) {
     return NextResponse.json({ error: lessonErr.message }, { status: 500 });
   }
-  return NextResponse.json({ lesson });
+  return NextResponse.json(lesson);
 }

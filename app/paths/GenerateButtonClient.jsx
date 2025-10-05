@@ -1,7 +1,10 @@
 'use client'
 
-export default function GenerateButtonClient ({ pathId, idx, newTitle, note = '' }) {
-  async function onClick () {
+import { Button } from '@/components/ui/button'
+import { Sparkles } from 'lucide-react'
+
+export default function GenerateButtonClient({ pathId, idx, newTitle, note = '' }) {
+  async function onClick() {
     try {
       const res = await fetch('/api/generate-course', {
         method: 'POST',
@@ -25,7 +28,14 @@ export default function GenerateButtonClient ({ pathId, idx, newTitle, note = ''
   }
 
   return (
-    <button className="px-3 py-1 rounded border" onClick={onClick}>Generate</button>
+    <Button 
+      onClick={onClick}
+      variant="outline"
+      className="inline-flex items-center gap-2 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700"
+    >
+      <Sparkles className="w-4 h-4" />
+      Generate Course
+    </Button>
   )
 }
 
