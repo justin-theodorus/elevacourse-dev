@@ -81,15 +81,13 @@ export default function Home() {
               </div>
               <div className="lg:w-1/2">
                 <h3 className="text-3xl font-bold text-blue-600 mb-4">
-                  AI Essay Generator
+                  AI Learning Path Generator
                 </h3>
                 <h4 className="text-xl font-semibold text-gray-900 mb-4">
-                  lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
+                  Create your personalized study roadmap.
                 </h4>
                 <p className="text-gray-600 mb-6">
-                  lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua lorem
-                  ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod?
+                  Just tell EelevaCourse what you want to learn — like catfish farming or web design — and our AI will generate structured lessons and subtopics to guide your entire learning journey.
                 </p>
                 <Button variant="outline" className="rounded-full px-8">
                   Learn more
@@ -104,15 +102,13 @@ export default function Home() {
               </div>
               <div className="lg:w-1/2">
                 <h3 className="text-3xl font-bold text-blue-600 mb-4">
-                  Smart Analytics
+                  Personalized Lessons
                 </h3>
                 <h4 className="text-xl font-semibold text-gray-900 mb-4">
-                  lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
+                  Learn in a way that fits you.
                 </h4>
                 <p className="text-gray-600 mb-6">
-                  lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua lorem
-                  ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod?
+                  Our AI adapts each lesson to your goals and learning style, ensuring that every topic feels relevant, efficient, and easy to understand.
                 </p>
                 <Button variant="outline" className="rounded-full px-8">
                   Learn more
@@ -127,15 +123,13 @@ export default function Home() {
               </div>
               <div className="lg:w-1/2">
                 <h3 className="text-3xl font-bold text-blue-600 mb-4">
-                  Business Intelligence
+                  Smart Progress Tracking
                 </h3>
                 <h4 className="text-xl font-semibold text-gray-900 mb-4">
-                  lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
+                  See how far you’ve come.
                 </h4>
                 <p className="text-gray-600 mb-6">
-                  lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua lorem
-                  ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod?
+                  Monitor your progress through intuitive charts and milestones that help you stay motivated and aware of your growth.
                 </p>
                 <Button variant="outline" className="rounded-full px-8">
                   Learn more
@@ -152,11 +146,10 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2 bg-white p-8 rounded-2xl">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                There're many more features
+                Explore More Skills
               </h3>
               <p className="text-gray-600 mb-6">
-                lorem ipsum dolor sit amet consectetur adipiscing elit
-                sed do eiusmod tempor
+                EelevaCourse recommends related lessons and topics based on your interests, helping you continuously expand your knowledge.
               </p>
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8">
                 Explore

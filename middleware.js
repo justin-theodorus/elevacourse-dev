@@ -1,6 +1,9 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse } from 'next/server';
 
+export const runtime = "nodejs";
+
+
 export async function middleware(request) {
   let supabaseResponse = NextResponse.next({ request });
 
