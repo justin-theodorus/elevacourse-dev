@@ -14,7 +14,7 @@ export function CourseCard({
 }) {
   if (variant === "compact") {
     return (
-      <div className="bg-gradient-to-br from-primary to-blue-400 rounded-2xl p-6 text-white min-w-[300px]">
+      <div className="bg-[#0976ECBA] rounded-2xl p-6 text-white rounded-2xl p-6 text-white min-w-[300px]">
         <h3 className="text-xl font-semibold mb-4">{title}</h3>
         <div className="space-y-2 mb-4">
           <div className="flex items-center justify-between text-sm">
