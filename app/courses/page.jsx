@@ -15,6 +15,7 @@ export default function CoursesPage() {
   const courses = [
     {
       id: 1,
+      slug: "data-mining",
       title: "Data Mining",
       description:
         "Belajar teknik dasar pengolahan dan analisis data untuk menemukan pola serta informasi penting dari data besar.",
@@ -24,6 +25,7 @@ export default function CoursesPage() {
     },
     {
       id: 2,
+      slug: "machine-learning",
       title: "Machine Learning",
       description:
         "Comprehensive guide to machine learning algorithms and applications for modern data science.",
@@ -34,6 +36,7 @@ export default function CoursesPage() {
     {
       id: 3,
       title: "Web Development",
+      slug: "web-development",
       description:
         "Full-stack web development with modern technologies including React, Node.js, and databases.",
       progress: 60,
@@ -43,6 +46,7 @@ export default function CoursesPage() {
     {
       id: 4,
       title: "Python Programming",
+      slug: "python-programming",
       description:
         "Learn Python programming from basics to advanced concepts including data structures and algorithms.",
       progress: 85,
@@ -52,6 +56,7 @@ export default function CoursesPage() {
     {
       id: 5,
       title: "Database Design",
+      slug: "database-design",
       description:
         "Master database design principles, SQL queries, and database optimization techniques.",
       progress: 40,
@@ -61,6 +66,7 @@ export default function CoursesPage() {
     {
       id: 6,
       title: "Cloud Computing",
+      slug: "cloud-computing",
       description:
         "Introduction to cloud platforms, services, and deployment strategies for modern applications.",
       progress: 30,
@@ -157,7 +163,7 @@ export default function CoursesPage() {
                 {filteredCourses.map((course) => (
                   <LessonCard
                     key={course.id}
-                    id={course.id}
+                    slug={course.slug}
                     title={course.title}
                     description={course.description}
                     progress={course.progress}

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export function LessonCard({
-  id,
+  slug,
   title,
   description,
   progress,
@@ -63,7 +63,7 @@ export function LessonCard({
             </div>
 
             {/* Button */}
-            <Link href={`/courses/${id}`}>
+            <Link href={`/courses/${slug}`}>
               <Button className="bg-white text-blue-600 font-semibold px-8 py-2 rounded-full hover:bg-blue-50 transition">
                 Continue
               </Button>
